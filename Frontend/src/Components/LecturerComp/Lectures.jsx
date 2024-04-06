@@ -3,6 +3,7 @@ import { api } from '../../Configer/configure';
 import { useNavigate } from 'react-router-dom';
 import Navbar from '../UserComp/NavBar.jsx';
 import Footer from '../UserComp/Footer.jsx';
+import RotateLoader from "react-spinners/RotateLoader.js";
 
 
 const Lectures = () => {
@@ -28,7 +29,8 @@ const Lectures = () => {
   return (
     <>
       <Navbar />
-      <div className="text-red-600 text-center text-2xl my-2 font-bold">Your Scheduled Lectures</div>
+      <div className="text-blue-500 text-center text-2xl my-6 font-bold">Your Scheduled Lectures</div>
+      {lectures.length > 0 ? (
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-4 px-2 gap-y-8 gap-x-5">
         {lectures.map((lecture) => (
           <div key={lecture._id} className="border border-gray-300 rounded-md shadowBox px-1 pb-3 cursor-pointer">
@@ -55,6 +57,15 @@ const Lectures = () => {
           </div>
         ))}
       </div>
+      )
+      : (
+        <div className='h-[900px] flex justify-center items-center w-full'>
+          <RotateLoader
+            color="#36d1d6"
+            speedMultiplier={1}
+          />
+        </div>
+      )}
       <Footer />
     </>
   );

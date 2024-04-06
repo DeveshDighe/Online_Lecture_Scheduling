@@ -14,7 +14,7 @@ const Footer = () => {
         }
     };
     return (
-        <div id='About' className=' h-72 footerCss mt-10'>
+        <div id='About Me' className=' h-72 footerCss mt-44'>
 
             <footer className="flex h-full flex-col space-y-10 justify-center py-9 bg-gray-900">
                 {/* pages: [

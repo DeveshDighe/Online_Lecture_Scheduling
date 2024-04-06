@@ -1,16 +1,19 @@
 import React, { useEffect, useState, useContext } from 'react';
 import { api } from '../../Configer/configure';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { MdDelete } from 'react-icons/md';
 import toast from 'react-hot-toast';
 import { MyContext } from '../../Context/AuthContext.jsx'
 import Navbar from './NavBar.jsx';
+
 
 const SingleCoursePage = () => {
   const [singelCourseData, setsingelCourseData] = useState({});
   const [lectures, setLectures] = useState([]);
   const [allUsersData, setallUsersData] = useState([]);
   const {state , dispatch} = useContext(MyContext)
+
+  const navigate = useNavigate()
 
   const addLecture = () => {
     setLectures([...lectures, { date: '', time: '', lecturer: '' }]);
@@ -21,6 +24,7 @@ const SingleCoursePage = () => {
       const response = await api.post(`/api/v1/course/addLectures/${id}`, lectures);
       if (response?.data?.success) {
         toast.success(response.data.message);
+        navigate('/')
       }
     } catch (error) {
       console.log(error, 'errrrr');

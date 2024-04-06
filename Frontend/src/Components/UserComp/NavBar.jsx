@@ -18,10 +18,12 @@ export default function Navbar() {
 
   const navigation = [
     { name: 'My Lectures', href: '', current: false },
-    (state?.user?.role == "ADMIN" && { name: 'Create Course', href: '/createCourse', current: false }),
-    { name: 'HOME', href: '/', current: false },
-    { name: 'About Me', href: 'About', current: false },
-  ]
+    state?.user?.role === "ADMIN" ? { name: 'Create Course', href: '/createCourse', current: false } : null,
+    { name: 'Home', href: '/', current: false },
+    { name: 'About Me',  current: false },
+  ].filter(item => item !== null);
+  
+  
 
   const handleuserClicks = (name) => {
     if (name === 'My Lectures') {
@@ -31,8 +33,9 @@ export default function Navbar() {
     } else if (name === 'Create Course') {
       navigate('/createCourse')
     } else if (name === 'About Me') {
+      console.log('dsfsfsffsfsfsfsf');
       // Smooth scroll to the About section
-      const element = document.getElementById('About')
+      const element = document.getElementById('About Me')
       if (element) {
         element.scrollIntoView({ behavior: 'smooth' })
       }
@@ -78,8 +81,8 @@ export default function Navbar() {
                         href={item.href}
                         onClick={() => handleuserClicks(item.name)}
                         className={classNames(
-                          item.current ? 'bg-gray-900 text-white' : 'text-white hover:bg-gray-700 hover:text-white',
-                          'rounded-md px-3 py-2 text-sm font-medium'
+                          item.current ? 'bg-gray-900 text-white cursor-pointer' : 'text-white hover:bg-gray-700 hover:text-white',
+                          'rounded-md px-3 py-2 text-sm font-medium cursor-pointer'
                         )}
                         aria-current={item.current ? 'page' : undefined}
                       >
@@ -102,7 +105,7 @@ export default function Navbar() {
                 {/* Profile dropdown */}
                 <Menu as="div" className="relative ml-3">
                   <div>
-                    <Menu.Button className="relative flex rounded-full bg-gray-800 text-white text-sm focus:outline-none  ">
+                    <Menu.Button className="relative flex rounded-full bg-white text-blue-500 text-sm focus:outline-none font-bold  ">
                       <span className="absolute -inset-1.5" />
                       <span className="sr-only">Open user menu</span>
                       <p className="h-8 w-8 rounded-full flex justify-center items-center text-lg">
