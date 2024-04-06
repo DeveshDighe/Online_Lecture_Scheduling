@@ -4,6 +4,8 @@ const dotenv = require('dotenv')
 const mongoose = require('mongoose')
 const allRoutes = require('./Src/Routes/index.js')
 
+DATABASE_KEY = 'mongodb+srv://deveshdighe30:ideamagixproject@cluster0.zroyxbk.mongodb.net/'
+
 const app = express();
 
 const PORT = 8000
@@ -25,7 +27,7 @@ app.listen(PORT,()=>{
   console.log(`Running on port ${PORT}`);
 } )
 
-mongoose.connect(process.env.DATABASE_KEY).then(()=>{
+mongoose.connect(DATABASE_KEY).then(()=>{
   console.log('Database Connected');
 })
 .catch((err)=>{
